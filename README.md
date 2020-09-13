@@ -20,3 +20,10 @@ pwsh ./setup.ps1
 ./build.cmd
 ```
 
+### Local Settings
+
+Override default app settings with the [dotnet secret manager](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-3.1&tabs=windows#set-a-secret):
+
+```shell
+dotnet user-secrets set "Some:Setting" "MySomeSettingValue" --project .\src\Azureference.Web\
+```
