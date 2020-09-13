@@ -1,0 +1,8 @@
+﻿<Project>
+    <PropertyGroup>
+        <Product>Azurereference</Product>
+        <Version></Version>
+        <Copyright>� 2020 Loud and Abrasive and Co.</Copyright>
+        <LangVersion>latest</LangVersion>
+    </PropertyGroup>
+</Project>

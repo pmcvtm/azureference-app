@@ -12,6 +12,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Info", "Info", "{2390ED23-C
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{60BEFEA1-F807-4323-97FE-3A1C4B3E3D4C}"
+	ProjectSection(SolutionItems) = preProject
+		..\build-helpers.ps1 = ..\build-helpers.ps1
+		..\build.cmd = ..\build.cmd
+		..\psakefile.ps1 = ..\psakefile.ps1
+		..\setup.ps1 = ..\setup.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
