@@ -1,0 +1,23 @@
+﻿@page
+@model Azureference.Web.Pages.Files
+@{
+    ViewData["Title"] = "Files";
+}
+
+<h1>Files</h1>
+
+<h2>Azure Blob Storage</h2>
+
+<p>Here are the blobs in the <span class="text-info">@Model.ContainerName</span> container:</p>
+
+<ul>
+    @if (!Model.Blobs.Any())
+    {
+        <li><em>No Blobs in this container.</em></li>
+    }
+
+    @foreach (var blob in Model.Blobs)
+    {
+        <li>@blob.Name</li>
+    }
+</ul>
