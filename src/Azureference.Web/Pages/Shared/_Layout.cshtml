@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Reflection
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -35,6 +36,7 @@
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2020 - Azureference.Web - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            <span>Version @Assembly.GetAssembly(typeof(Startup)).GetName().Version.ToString()</span>
         </div>
     </footer>
 
