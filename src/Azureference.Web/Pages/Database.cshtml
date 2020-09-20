@@ -1,0 +1,23 @@
+﻿@page
+@model Azureference.Web.Pages.Database
+@{
+    ViewData["Title"] = "Database";
+}
+
+<h1>Database</h1>
+
+<h2>Azure SQL</h2>
+
+<p>
+    The database
+    @if (Model.CanConnect && string.IsNullOrEmpty(Model.ErrorMessage))
+        { <span class="text-success">CAN</span> }
+    else
+        { <span class="text-danger">CANNOT</span> }
+    connect.
+</p>
+
+@if (!string.IsNullOrEmpty(@Model.ErrorMessage))
+{
+    <p>@Model.ErrorMessage</p>
+}
