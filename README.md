@@ -31,6 +31,8 @@ pwsh ./setup.ps1
 
 ### Local Settings
 
+**You MUST update settings for app to work, it's in Azure, after all.**
+
 Override default app settings with the [dotnet secret manager](https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-3.1&tabs=windows#set-a-secret):
 
 ```shell
