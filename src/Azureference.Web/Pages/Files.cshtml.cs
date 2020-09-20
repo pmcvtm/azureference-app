@@ -11,11 +11,8 @@ namespace Azureference.Web.Pages
 {
     public class Files : PageModel
     {
-        private readonly IConfiguration _config;
-
         public Files(IConfiguration config)
         {
-            _config = config;
             ContainerUri = new Uri(config.GetValue<string>("Files:BlobContainerUri"));
         }
 
