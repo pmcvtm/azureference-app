@@ -8,16 +8,25 @@
 
 <h2>Azure Blob Storage</h2>
 
-<p>Here are the blobs in the <span class="text-info">@Model.ContainerName</span> container:</p>
+@if (string.IsNullOrEmpty(@Model.ErrorMessage))
+{
 
-<ul>
-    @if (!Model.Blobs.Any())
-    {
-        <li><em>No Blobs in this container.</em></li>
-    }
+    <p>Here are the blobs in the <span class="text-info">@Model.ContainerName</span> container:</p>
 
-    @foreach (var blob in Model.Blobs)
-    {
-        <li>@blob.Name</li>
-    }
-</ul>
+    <ul>
+        @if (!Model.Blobs.Any())
+        {
+            <li><em>No Blobs in this container.</em></li>
+        }
+
+        @foreach (var blob in Model.Blobs)
+        {
+            <li>@blob.Name</li>
+        }
+    </ul>
+}
+else
+{
+    <h3 class="text-danger">Fetching Blobs Failed</h3>
+    <p>@Model.ErrorMessage</p>
+}

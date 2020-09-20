@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,25 +19,33 @@ namespace Azureference.Web.Pages
         }
 
         public string ContainerName { get; }
+        public string ErrorMessage { get; private set; }
         public IEnumerable<BlobModel> Blobs { get; private set; }
 
         public async Task OnGetAsync()
         {
-            var connectionString = _config.GetValue<string>("Files:ConnectionString");
-            var blobContainerClient = new BlobContainerClient(connectionString, ContainerName);
+            try
+            {
+                var connectionString = _config.GetValue<string>("Files:ConnectionString");
+                var blobContainerClient = new BlobContainerClient(connectionString, ContainerName);
 
-            if (!blobContainerClient.Exists())
-            {
-                Blobs = Enumerable.Empty<BlobModel>();
+                if (!blobContainerClient.Exists())
+                {
+                    Blobs = Enumerable.Empty<BlobModel>();
+                }
+                else
+                {
+                    Blobs = await blobContainerClient.GetBlobsAsync()
+                        .Select(b => new BlobModel(b.Name))
+                        .ToListAsync();
+                }
             }
-            else
+            catch (Exception e)
             {
-                Blobs = await blobContainerClient.GetBlobsAsync()
-                    .Select(b => new BlobModel(b.Name))
-                    .ToListAsync();
+                ErrorMessage = e.Message;
             }
+            
         }
-
 
         public class BlobModel
         {
