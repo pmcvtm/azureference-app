@@ -1,0 +1,24 @@
+﻿@page
+@model Azureference.Web.Pages.KeyVault
+@{
+    ViewData["Title"] = "Key Vault";
+}
+
+<h1>Azure Key Vault</h1>
+
+<h2>Secrets</h2>
+
+@if (string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <p>
+        The value of the secret called
+        <span class="text-info">@Model.SecretName</span> is
+        <span class="text-success">@Model.SecretValue</span>
+    </p>
+}
+else
+{
+    <h3 class="text-danger">Fetching Secrets Failed</h3>
+    <p>@Model.ErrorMessage</p>
+}
+
