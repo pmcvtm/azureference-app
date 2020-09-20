@@ -16,12 +16,11 @@ namespace Azureference.Web.Pages
         public Files(IConfiguration config)
         {
             _config = config;
-            ContainerName = _config.GetValue<string>("Files:BlobContainerName");
             ContainerUri = new Uri(config.GetValue<string>("Files:BlobContainerUri"));
         }
 
-        public string ContainerName { get; }
         public Uri ContainerUri { get; }
+        public string ContainerName => ContainerUri.Segments.Last();
         public string ErrorMessage { get; private set; }
         public IEnumerable<BlobModel> Blobs { get; private set; }
 
