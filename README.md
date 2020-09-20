@@ -2,9 +2,18 @@
 
 A reference Azure "cloud native" app for interfacing with Azure infrastructure libraries.
 
-Includes:
+Includes demos of connecting to:
 
-_More To Come_
+- Azure Blob Storage
+- Azure SQL Server
+- Azure Key Vault
+
+Does not include (and should not be reference for):
+
+- how to _use_ services listed above once connected
+- how to _test_ services listed above
+- services not listed above
+- how to architect your app good too
 
 ## Setup
 
