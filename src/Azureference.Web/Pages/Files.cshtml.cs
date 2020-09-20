@@ -42,7 +42,6 @@ namespace Azureference.Web.Pages
             {
                 ErrorMessage = e.Message;
             }
-            
         }
 
         public class BlobModel
