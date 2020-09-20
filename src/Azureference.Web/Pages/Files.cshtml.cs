@@ -28,8 +28,7 @@ namespace Azureference.Web.Pages
         {
             try
             {
-                var connectionString = _config.GetConnectionString("StorageAccount");
-                var blobContainerClient = new BlobContainerClient(connectionString, ContainerName);
+                var blobContainerClient = new BlobContainerClient(ContainerUri, new DefaultAzureCredential());
 
                 if (!blobContainerClient.Exists())
                 {
