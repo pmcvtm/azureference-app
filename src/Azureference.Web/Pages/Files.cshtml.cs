@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Azure.Identity;
 using Azure.Storage.Blobs;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
@@ -10,15 +11,13 @@ namespace Azureference.Web.Pages
 {
     public class Files : PageModel
     {
-        private readonly IConfiguration _config;
-
         public Files(IConfiguration config)
         {
-            _config = config;
-            ContainerName = _config.GetValue<string>("Files:BlobContainerName");
+            ContainerUri = new Uri(config.GetValue<string>("Files:BlobContainerUri"));
         }
 
-        public string ContainerName { get; }
+        public Uri ContainerUri { get; }
+        public string ContainerName => ContainerUri.Segments.Last();
         public string ErrorMessage { get; private set; }
         public IEnumerable<BlobModel> Blobs { get; private set; }
 
@@ -26,8 +25,7 @@ namespace Azureference.Web.Pages
         {
             try
             {
-                var connectionString = _config.GetConnectionString("StorageAccount");
-                var blobContainerClient = new BlobContainerClient(connectionString, ContainerName);
+                var blobContainerClient = new BlobContainerClient(ContainerUri, new DefaultAzureCredential());
 
                 if (!blobContainerClient.Exists())
                 {
@@ -44,7 +42,6 @@ namespace Azureference.Web.Pages
             {
                 ErrorMessage = e.Message;
             }
-            
         }
 
         public class BlobModel

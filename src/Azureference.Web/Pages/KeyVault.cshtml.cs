@@ -1,6 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using Azure.Core;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -27,7 +26,7 @@ namespace Azureference.Web.Pages
             try
             {
                 var keyVaultUri = _config.GetValue<string>("KeyVault:Uri");
-                var client = new SecretClient(new Uri(keyVaultUri), GetClientCredential());
+                var client = new SecretClient(new Uri(keyVaultUri), new DefaultAzureCredential());
                 var secret = await client.GetSecretAsync(SecretName);
 
                 SecretValue = secret.Value.Value;
@@ -36,16 +35,6 @@ namespace Azureference.Web.Pages
             {
                 ErrorMessage = e.Message;
             }
-        }
-
-
-        private TokenCredential GetClientCredential()
-        {
-            var tenantId = _config.GetValue<string>("AzureAD:TenantId");
-            var clientId = _config.GetValue<string>("AzureAD:ClientId");
-            var clientSecret = _config.GetValue<string>("AzureAD:ClientSecret");
-
-            return new ClientSecretCredential(tenantId, clientId, clientSecret);
         }
     }
 }
